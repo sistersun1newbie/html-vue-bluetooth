@@ -1,7 +1,7 @@
 <template lang="html">
   <li class="selectedId===treeData.id?'selected':''">
     <div @click="isShow=!isShow">{{isShow?'-':'+'}}{{treeData.title||'no title'}}
-      <span style="border:1px solid red" @click.stop="delEmit('delete')">Delete</span>
+      <span style="border:1px solid red" v-show="treeData.id" @click.stop="delEmit('delete')">Delete</span>
       <span style="border:1px solid red" @click.stop="delEmit('select')">Choose</span>
     </div>
     <slot name="test"></slot>
@@ -43,14 +43,16 @@ export default {
     }
   },
   computed: {
-
+    treeDataBak(){
+      return this.treeData
+    }
   },
   mounted () {
 
   },
   methods: {
     addchild () {
-      this.treeData.child.push({
+      this.treeDataBak.child.push({
         title: 'new some',
         id:String(new Date().getTime()),
         child: []

@@ -1,6 +1,6 @@
 <template>
 <div>
-
+<!-- {{temp}} -->
 
   <el-row :gutter="20">
     <el-col :span="12">
@@ -125,6 +125,7 @@ export default {
   },
   data () {
     return {
+      temp:[],
       animation:'list-complete',//flip-list  list list-complete
       itemAmount: [
         {
@@ -226,7 +227,6 @@ export default {
           value: 'stretch'
         }
       ],
-      temp:'',
       flexOrder:1,
       flexGrow:'0',
       flexShrink:1,
@@ -246,11 +246,9 @@ export default {
       if (this.flexDirection && this.flexDirection !== '') {
         styleObj['flex-direction'] = this.flexDirection
       }
-
       if (this.flexWrap && this.flexDirection !== '') {
         styleObj['flex-wrap'] = this.flexWrap
       }
-
       if (this.justifyContent && this.flexDirection !== '') {
         styleObj['justify-content'] = this.justifyContent
       }
@@ -291,8 +289,14 @@ export default {
 
       return styleObj
     },
+
   },
   mounted(){
+    // this.log(window.navigator)
+    for( let i in window.navigator){
+      this.temp.push(i+'**'+ window.navigator[i])
+    }
+
     this.log(JSON.stringify(this.box))
     this.log('random',this.util.random({}))
   },

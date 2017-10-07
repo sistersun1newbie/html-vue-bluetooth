@@ -1,13 +1,14 @@
 <template lang="html">
   <div class="grid-content bg-purple flexItem" :style="childData.style">
-    <div class="title" v-show="childData.type!=='content'" style="">
+    <!-- <div class="title" v-show="childData.type!=='content'" style="">
       {{childData.title}}
-    </div>
-    <div  class="content" :style="childData.style">
+    </div> -->
+      <slot name="test"></slot>
       <flexDivComp v-for="(item,index) in childData.child" :key="index"  v-if="childData&&childData.child&&childData.child.length!==0" :childData="item">
         <!-- <span slot="test">{{index}}</span> -->
+        <div slot="test" v-html="item.htmlcode"></div>
       </flexDivComp>
-    </div>
+
   </div>
 </template>
 
@@ -20,7 +21,7 @@ export default {
       default: function() {
         return {
           title: '',
-          type: 'content',
+          // type: 'content',
           style: '',
           child: [],
           // custom:{},
@@ -93,5 +94,6 @@ export default {
   }
   .flexItem {
       margin: 0 10px;
+      min-width: 36px;
   }
 </style>

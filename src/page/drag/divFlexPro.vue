@@ -93,12 +93,12 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item  label="type:">
+            <!-- <el-form-item  label="type:">
               <el-select v-model="contentType"  placeholder="请选择type">
                 <el-option v-for="i in ['content','item']" :key="(new Date).getTime()+''" :label="i" :value="i">
                 </el-option>
               </el-select>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item  label="title:">
               <el-input v-model="contentTitle" style="width:100%"></el-input>
             </el-form-item>
@@ -181,15 +181,13 @@ export default {
       selectedObj:{test:'11'},
 
       flexDivData: [{
-        id:'0',
+        // id:'0',
         title: 'root',
-        type:'content',//类型标识 是容器还是 项目item
-
-        child: [
-
-        ]
+        // type:'content',//类型标识 是容器还是 项目item
+        child: []
       }],
       animation:'list-complete',//flip-list  list list-complete
+      // flex配置
       itemAmount: [
         {
           style:{
@@ -291,19 +289,19 @@ export default {
         }
       ],
 
-      temp:'',
 
+      // flexItem
       flexOrder:1,
       flexGrow:'0',
       flexShrink:1,
       flexBasis:'auto',
       alignSelf:'auto',
-
+      // 大小设置
       heightUnit:'px',
       widthUnit:'%',
       contentHeight:'0',
       contentWidth:'0',
-      contentType:'content',
+      // contentType:'content',
       contentTitle:'',
 
     }
@@ -365,9 +363,9 @@ export default {
       if (this.contentWidth && this.contentWidth !== '' && String(this.contentWidth) !== String(0)) {
         styleObj.style['width'] = this.contentWidth+this.widthUnit
       }
-      if (this.contentType && this.contentType !== '') {
-        styleObj['type'] = this.contentType
-      }
+      // if (this.contentType && this.contentType !== '') {
+      //   styleObj['type'] = this.contentType
+      // }
       if (this.contentTitle && this.contentTitle !== '') {
         styleObj['title'] = this.contentTitle
       }
@@ -376,7 +374,7 @@ export default {
   },
   mounted(){
     this.log(JSON.stringify(this.box))
-    this.log('random',this.util.random({}))
+    // this.log('random',this.util.random({}))
     // this.recursionSearch('root',this.flexDivData,2)
     // console.log(this.flexDivData[0].child[1])
   },
@@ -445,7 +443,6 @@ export default {
         // this.log("delete")
         this.recursionSearch(false,this.flexDivData,argObj.id,argObj.type)
       }
-
     },
     recursionSearch(parent,childs,id,type){
       // this.log("start",childs)

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Hello from 'src/page/components/Hello'
-const layzLoading = (path) => () => import(`src/page/main/${path}.vue`)
+const layzLoading = (path,parDir) => () => import(`src/page/${parDir?parDir:'main'}/${path}.vue`)
 Vue.use(Router)
 export default new Router({
   routes: [{
@@ -10,9 +10,25 @@ export default new Router({
     component: layzLoading('cordova')
   },
   {
+    path: '/mainPanel',
+    name: 'mainPanel',
+    component: layzLoading('mainPanel')
+  },
+  {
+    path: '/dragAndFlex',
+    name: 'dragAndFlex',
+    component: layzLoading('dragAndFlex', 'drag')
+  },
+  {
     path: '/divFlexPro',
     name: 'divFlexPro',
-    component: layzLoading('divFlexPro')
+    component: layzLoading('divFlexPro', 'drag')
+  },
+
+  {
+    path: '/dragConfig',
+    name: 'dragConfig',
+    component: layzLoading('dragConfig', 'drag')
   },
   {
     path: '/buttonWait',
@@ -39,7 +55,7 @@ export default new Router({
   }, {
     path: '/drag',
     name: 'drag',
-    component: layzLoading('drag')
+    component: layzLoading('drag', 'drag')
   }, {
     path: '/es6Pro',
     name: 'es6Pro',
